@@ -54,10 +54,7 @@ module.exports = function stubbornSession (options) {
             if (!row) return done();
 
             var s = new Session();
-            s.id = sid;
-            s.user = row.user;
-            s.parent_session_id = row.parent_session_id;
-            s.expires = row.expires;
+            _.defaults(s, row, { id: sid });
             done(null, s);
         });
     }
